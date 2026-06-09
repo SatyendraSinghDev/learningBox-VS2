@@ -10,6 +10,7 @@ import {
   USER_INITIALS,
 } from "../constants/sidebarText";
 
+
 function SidebarBrand() {
   return (
     <div className="px-5 py-5 border-b border-white/10">
@@ -46,55 +47,8 @@ function SidebarNav({ activePage, onNavigate }) {
         >
           <span className="text-base">{item.icon}</span>
           <span className="flex-1">{item.label}</span>
-          {item.badge && (
-            <span
-              className={`text-xs px-1.5 py-0.5 rounded font-mono
-                ${activePage === item.id ? "bg-white/20 text-white" : "bg-white/5 text-gray-500"}
-              `}
-            >
-              {item.badge}
-            </span>
-          )}
         </button>
       ))}
-
-      <div className="mt-4 px-3 py-3 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <p className="text-gray-500 text-[11px] uppercase tracking-[0.24em] font-semibold">
-          Preview links
-        </p>
-        <a
-          href="http://localhost:3001"
-          target="_blank"
-          rel="noreferrer"
-          className="block text-sm text-gray-300 hover:text-white hover:underline"
-        >
-          API Monitor (local)
-        </a>
-        <a
-          href="https://learningbox-app-page-first.vercel.app"
-          target="_blank"
-          rel="noreferrer"
-          className="block text-sm text-gray-300 hover:text-white hover:underline"
-        >
-          API Monitor (prod)
-        </a>
-        <a
-          href="http://localhost:3002"
-          target="_blank"
-          rel="noreferrer"
-          className="block text-sm text-gray-300 hover:text-white hover:underline"
-        >
-          Calendar (local)
-        </a>
-        <a
-          href="https://learningbox-app-page-second.vercel.app"
-          target="_blank"
-          rel="noreferrer"
-          className="block text-sm text-gray-300 hover:text-white hover:underline"
-        >
-          Calendar (prod)
-        </a>
-      </div>
     </nav>
   );
 }

@@ -2,9 +2,20 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const path = require("path");
 
-const appPageFirstUrl = process.env.APP_PAGE_FIRST_URL || "http://localhost:3001/remoteEntry.js";
-const appPageSecondUrl = process.env.APP_PAGE_SECOND_URL || "http://localhost:3002/remoteEntry.js";
-const publicPath = process.env.HOST_PUBLIC_URL || "auto";
+const isProdBuild = process.env.NODE_ENV === "production";
+const appPageFirstUrl =
+  process.env.APP_PAGE_FIRST_URL ||
+  (isProdBuild
+    ? "https://learningbox-app-page-first.vercel.app/remoteEntry.js"
+    : "http://localhost:3001/remoteEntry.js");
+const appPageSecondUrl =
+  process.env.APP_PAGE_SECOND_URL ||
+  (isProdBuild
+    ? "https://learningbox-app-page-second.vercel.app/remoteEntry.js"
+    : "http://localhost:3002/remoteEntry.js");
+const publicPath =
+  process.env.HOST_PUBLIC_URL ||
+  (isProdBuild ? "https://learningbox-host.vercel.app/" : "auto");
 
 module.exports = {
   entry: "./src/index.js",
