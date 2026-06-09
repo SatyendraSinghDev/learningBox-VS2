@@ -10,7 +10,6 @@ import {
   USER_INITIALS,
 } from "../constants/sidebarText";
 
-
 function SidebarBrand() {
   return (
     <div className="px-5 py-5 border-b border-white/10">
