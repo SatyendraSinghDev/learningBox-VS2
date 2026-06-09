@@ -62,6 +62,49 @@ http://localhost:3000
 
 > ⚠️ Start `app-page-first` and `app-page-second` before `host` so remotes are available.
 
+### 📍 Preview URLs
+
+#### Local preview
+- Host shell: [http://localhost:3000](http://localhost:3000)
+- API Monitor: [http://localhost:3001](http://localhost:3001)
+- Calendar: [http://localhost:3002](http://localhost:3002)
+
+#### Production preview
+- Host shell: [https://learningbox-host.vercel.app](https://learningbox-host.vercel.app)
+- API Monitor: [https://learningbox-app-page-first.vercel.app](https://learningbox-app-page-first.vercel.app)
+- Calendar: [https://learningbox-app-page-second.vercel.app](https://learningbox-app-page-second.vercel.app)
+
+> The host shell loads the remotes inside the dashboard. Use the direct preview links to open individual MFE apps in a new tab.
+
+---
+
+## 🌐 Local / Production Remote URLs
+
+The host is configured to load remote MFE apps dynamically.
+
+- When you run locally with `npm start`, the host uses:
+  - `http://localhost:3001/remoteEntry.js`
+  - `http://localhost:3002/remoteEntry.js`
+- In production, the host uses Vercel remote URLs supplied by environment variables.
+
+### Environment variables for production builds
+
+Set these in Vercel or your production CI environment:
+
+- `APP_PAGE_FIRST_URL`
+- `APP_PAGE_SECOND_URL`
+- `HOST_PUBLIC_URL`
+
+Example values:
+
+```bash
+APP_PAGE_FIRST_URL=https://learningbox-app-page-first.vercel.app/remoteEntry.js
+APP_PAGE_SECOND_URL=https://learningbox-app-page-second.vercel.app/remoteEntry.js
+HOST_PUBLIC_URL=https://learningbox-host.vercel.app/
+```
+
+> If these variables are missing, the host falls back to the local `localhost` remote URLs.
+
 ---
 
 ## 📦 Apps and Responsibilities

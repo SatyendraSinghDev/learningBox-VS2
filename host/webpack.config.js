@@ -2,10 +2,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const path = require("path");
 
+const appPageFirstUrl = process.env.APP_PAGE_FIRST_URL || "http://localhost:3001/remoteEntry.js";
+const appPageSecondUrl = process.env.APP_PAGE_SECOND_URL || "http://localhost:3002/remoteEntry.js";
+const publicPath = process.env.HOST_PUBLIC_URL || "auto";
+
 module.exports = {
   entry: "./src/index.js",
   output: {
-    publicPath: "http://localhost:3000/",
+    publicPath,
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
@@ -35,8 +39,8 @@ module.exports = {
       name: "Host",
       remotes: {
         // Points to each remote app's Module Federation entry file
-        AppPageFirst: "AppPageFirst@http://localhost:3001/remoteEntry.js",
-        AppPageSecond: "AppPageSecond@http://localhost:3002/remoteEntry.js",
+        AppPageFirst: `AppPageFirst@${appPageFirstUrl}`,
+        AppPageSecond: `AppPageSecond@${appPageSecondUrl}`,
       },
       shared: {
         react: { singleton: true, eager: false, requiredVersion: "^18.2.0" },

@@ -2,10 +2,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { ModuleFederationPlugin } = require("webpack").container;
 const path = require("path");
 
+const publicPath = process.env.APP_PAGE_FIRST_PUBLIC_URL || "auto";
+
 module.exports = {
   entry: "./src/index.js",
   output: {
-    publicPath: "http://localhost:3001/",
+    publicPath,
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
   },
